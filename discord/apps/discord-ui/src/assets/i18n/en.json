@@ -1,0 +1,22 @@
+{
+  "AUTH": {
+    "REGISTER": {
+      "TITLE": "Create an account",
+      "FIRST_NAME_LABEL": "First name",
+      "LAST_NAME_LABEL": "Last name",
+      "BIRTH_DATE_LABEL": "Birth date",
+      "PESEL_LABEL": "PESEL",
+      "CONTINUE": "Continue",
+      "NOT_REGISTERED": "Not registered?",
+      "CREATE_ACCOUNT": "Create account"
+    },
+    "LOGIN": {
+      "TITLE": "Welcome back",
+      "EMAIL_LABEL": "Email",
+      "PASSWORD_LABEL": "Password",
+      "LOGIN": "Log in",
+      "ALREADY_HAVE_ACCOUNT": "Alreade have an account?",
+      "GOOGLE": "Sign in with Google"
+    }
+  }
+}

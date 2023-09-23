@@ -14,7 +14,14 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@discord/accessibility": ["libs/accessibility/src/index.ts"],
+      "@discord/api": ["libs/api/src/index.ts"],
+      "@discord/init": ["modules/init/src/index.ts"],
+      "@discord/libs/auth": ["libs/auth/src/index.ts"],
+      "@discord/libs/utils": ["libs/utils/src/index.ts"],
+      "@discord/shared-ui": ["modules/shared/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

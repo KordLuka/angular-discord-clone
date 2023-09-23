@@ -1,0 +1,27 @@
+<div
+  class="flex justify-center items-start sm:items-center h-[100%] bg-primary dark:bg-gray-800">
+  <div
+    class="sm:translate-y-[-100px] h-[100%] sm:h-auto w-[100vw] sm:w-[500px] lg:w-[50vw] max-w-[1000px] p-8 sm:mt-4 bg-white border border-gray-200 rounded-lg shadow shadow-slate-50 dark:shadow-slate-800 dark:bg-gray-900 dark:border-gray-700">
+    <discord-auth-form
+      (submitform)="onSubmit($event)"
+      (google)="onSignInWithGoogle()"
+      [isLoading]="isCreating()"
+      [isDisabled]="isCreating()"></discord-auth-form>
+
+    <div class="text-sm font-medium text-gray-500 dark:text-gray-300 mt-4">
+      {{
+        activeForm() !== FormType.login
+          ? ('AUTH.LOGIN.ALREADY_HAVE_ACCOUNT' | translate)
+          : ('AUTH.REGISTER.NOT_REGISTERED' | translate)
+      }}
+      <a
+        class="text-primary hover:underline dark:text-blue-500 cursor-not-allowed">
+        {{
+          activeForm() !== FormType.login
+            ? ('AUTH.LOGIN.LOGIN' | translate)
+            : ('AUTH.REGISTER.CREATE_ACCOUNT' | translate)
+        }}!</a
+      >
+    </div>
+  </div>
+</div>

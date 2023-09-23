@@ -1,0 +1,59 @@
+<form class="space-y-6" [formGroup]="form" (submit)="onSubmit()">
+  <h5 class="text-xl font-medium text-gray-900 dark:text-white">
+    <h1>{{ 'AUTH.LOGIN.TITLE' | translate }}</h1>
+  </h5>
+  <div class="grid gap-6 mb-6">
+    <fieldset [disabled]="isDisabled">
+      <div>
+        <label
+          for="email"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >{{ 'AUTH.LOGIN.EMAIL_LABEL' | translate }}</label
+        >
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="joe@doe.com" />
+      </div>
+      <div>
+        <label
+          for="password"
+          class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          >{{ 'AUTH.LOGIN.PASSWORD_LABEL' | translate }}</label
+        >
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="•••••••••" />
+      </div>
+    </fieldset>
+    <discord-button
+      (click)="signInWithGoogle()"
+      [type]="'button'"
+      [text]="'AUTH.LOGIN.GOOGLE'"
+      [isDisabled]="isDisabled"
+      [isLoading]="isLoading"
+      [isOutline]="true">
+      <svg
+        class="w-4 h-4 mr-2"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 18 19">
+        <path
+          fill-rule="evenodd"
+          d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z"
+          clip-rule="evenodd" />
+      </svg>
+    </discord-button>
+    <discord-button
+      [type]="'submit'"
+      [text]="'AUTH.LOGIN.LOGIN'"
+      [isDisabled]="isDisabled"
+      [isLoading]="isLoading"></discord-button>
+  </div>
+</form>

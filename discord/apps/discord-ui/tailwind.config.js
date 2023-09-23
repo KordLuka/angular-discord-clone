@@ -5,10 +5,18 @@ const { join } = require('path');
 module.exports = {
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
+    join(__dirname, './node_modules/flowbite/**/*.js'),
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#1c64f2',
+        primaryd: '#fff',
+      },
+    },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin'), // add this line
+  ],
 };

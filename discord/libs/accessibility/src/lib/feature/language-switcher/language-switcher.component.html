@@ -1,0 +1,31 @@
+<button
+  type="button"
+  data-dropdown-toggle="language-dropdown-menu"
+  class="inline-flex items-center font-medium justify-center px-4 py-2 text-sm text-white bg-blue-600 dark:text-white rounded-lg cursor-pointer hover:bg-blue-500 dark:bg-gray-700 dark:hover:bg-gray-600 dark:hover:text-white">
+  <img
+    src="{{ activeLanguage?.img }}"
+    class="rounded-full fill w-8 h-8 mr-3"
+    alt="Active lang" />
+
+  {{ activeLanguage?.label }}
+</button>
+<div
+  class="z-50 hidden bg-white my-4 text-base list-none divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-900"
+  id="language-dropdown-menu">
+  <ul class="py-2 font-medium" role="none">
+    <ng-container *ngFor="let language of availableLanguages">
+      <li (click)="switchLang(language.id)" class="cursor-pointer">
+        <div
+          class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">
+          <div class="inline-flex items-center">
+            <img
+              src="{{ language.img }}"
+              class="rounded-full fill w-8 h-8 mr-3"
+              alt="language icon" />
+            {{ language.label }}
+          </div>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</div>

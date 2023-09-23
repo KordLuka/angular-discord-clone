@@ -1,5 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+html,
+body,
+:root {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@import '@angular/cdk/overlay-prebuilt.css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
 /* You can add global styles to this file, and also import other style files */
+html,
+body,
+:root {
+  height: 100%;
+  font-family: 'Open Sans', sans-serif;
+}
+
+@layer base {
+  :root {
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+  }
+
+  .dark {
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+  }
+}
