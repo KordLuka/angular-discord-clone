@@ -1,0 +1,5 @@
+<ng-container *ngIf="profile$ | async"></ng-container>
+
+<div class="h-[100%] w-[100%] flex items-center justify-center">
+  <discord-spinner *ngIf="isLoading()"></discord-spinner>
+</div>

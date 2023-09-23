@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import { TranslateModule } from '@ngx-translate/core';
+import { initFlowbite } from 'flowbite';
+import { NavbarComponent } from './ui/navbar/navbar.component';
 @Component({
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, TranslateModule, NavbarComponent],
   selector: 'discord-root',
   templateUrl: './app.component.html',
 })
-export class AppComponent {
-  title = 'discord-ui';
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }

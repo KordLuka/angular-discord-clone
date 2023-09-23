@@ -19,7 +19,10 @@
           "apps/discord-ui/src/favicon.ico",
           "apps/discord-ui/src/assets"
         ],
-        "styles": ["apps/discord-ui/src/styles.scss"],
+        "styles": [
+          "apps/discord-ui/src/styles.scss",
+          "node_modules/ngx-toastr/toastr.css"
+        ],
         "scripts": [],
         "customWebpackConfig": {
           "path": "apps/discord-ui/webpack.config.js"

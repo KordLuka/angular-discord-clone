@@ -1,68 +1,79 @@
 import { Injectable, Signal, inject, signal } from '@angular/core';
+import { GoogleAuthProvider, User } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { SupabaseClient, User, createClient } from '@supabase/supabase-js';
+import { ToastrService } from 'ngx-toastr';
+import { BehaviorSubject, Observable, switchMap } from 'rxjs';
+import * as firebase from 'firebase/auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private currentUser$ = signal<boolean | User | null | undefined>(null);
-  private supabase!: SupabaseClient;
+  private readonly authFireService = inject(AngularFireAuth);
   private readonly router = inject(Router);
+  private readonly toastrService = inject(ToastrService);
 
-  public get currentUser(): Signal<boolean | User | null | undefined> {
-    return this.currentUser$;
+  private user: BehaviorSubject<Observable<firebase.User> | null> =
+    new BehaviorSubject<Observable<firebase.User> | null>(null);
+
+  public user$ = this.user.asObservable().pipe(switchMap((user: any) => user));
+  private isCreating$ = signal<boolean>(false);
+
+  public get currentUser(): Promise<firebase.User | null> {
+    return this.authFireService.currentUser as Promise<firebase.User | null>;
   }
 
-  private get url(): string | undefined {
-    return process.env['NX_SUPABASE_URL'];
-  }
-
-  private get key(): string | undefined {
-    return process.env['NX_SUPABASE_KEY'];
+  public get isCreating(): Signal<boolean> {
+    return this.isCreating$.asReadonly();
   }
 
   constructor() {
-    this.initSupabaseClient();
+    this.user.next(this.authFireService.authState as any);
   }
 
-  public signInWithEmail(email: string) {
-    return this.supabase.auth.signInWithOtp({
-      email,
-    });
+  public createUserWithEmailAndPassword(email: string, password: string) {
+    if (!email || !password) return;
+
+    this.isCreating$.set(true);
+
+    this.authFireService
+      .createUserWithEmailAndPassword(email, password)
+      .then(() => {
+        this.toastrService.success('Udało się!');
+        this.signInWithEmailAndPassword(email, password);
+      })
+      .catch(() => {
+        this.toastrService.error('Something went wrong!');
+      })
+      .finally(() => this.isCreating$.set(false));
   }
 
-  public logout(): void {
-    this.supabase.auth.signOut();
+  public signInWithEmailAndPassword(email: string, password: string) {
+    if (!email || !password) return;
+
+    this.isCreating$.set(true);
+
+    this.authFireService
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.toastrService.success('Udało się!');
+      })
+      .catch(() => {
+        this.toastrService.error('Something went wrong!');
+      })
+      .finally(() => this.isCreating$.set(false));
   }
 
-  private async initSupabaseClient(): Promise<void> {
-    if (!this.url || !this.key) {
-      throw new Error(
-        'NX_SUPABASE_URL or NX_SUPABASE_KEY has not been provided'
-      );
-    }
+  public signInWithGoogle() {
+    this.isCreating$.set(true);
 
-    this.supabase = createClient(this.url, this.key);
-
-    console.log('key: ', this.url, this.key);
-
-    const user = await this.supabase.auth.getUser();
-
-    if (user?.data?.user) {
-      this.currentUser$.set(user.data.user);
-    } else {
-      this.currentUser$.set(false);
-    }
-
-    this.supabase.auth.onAuthStateChange((event, session) => {
-      console.log(event);
-      console.log(session);
-
-      if (event === 'SIGNED_IN') {
-        this.currentUser$.set(session?.user);
-      } else {
-        this.currentUser$.set(false);
-        this.router.navigateByUrl('/', { replaceUrl: true });
-      }
-    });
+    this.authFireService
+      .signInWithPopup(new GoogleAuthProvider())
+      .then(() => {
+        this.toastrService.success('Udało się!');
+      })
+      .catch(() => {
+        this.toastrService.error('Something went wrong!');
+      })
+      .finally(() => this.isCreating$.set(false));
   }
 }

@@ -1,15 +1,19 @@
 import { Route } from '@angular/router';
-import { AuthGuard } from '@discord/libs/auth';
-import { AppComponent } from './app.component';
+import { authGuard } from '@discord/libs/auth';
 export const appRoutes: Route[] = [
   {
     path: '',
-    component: AppComponent,
-    canActivate: [AuthGuard],
+    pathMatch: 'full',
+    redirectTo: 'init',
   },
   {
     path: 'auth',
     loadComponent: () =>
       import('@discord/libs/auth').then(m => m.AuthComponent),
+  },
+  {
+    path: 'init',
+    canActivate: [authGuard],
+    loadComponent: () => import('@discord/init').then(m => m.InitComponent),
   },
 ];
