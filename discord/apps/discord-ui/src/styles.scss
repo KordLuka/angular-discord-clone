@@ -3,6 +3,7 @@ html,
 body,
 :root {
   height: 100%;
+  overflow: hidden;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -31,4 +32,13 @@ body,
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 1.2%;
   }
+}
+
+::ng-deep .mat-dialog-container {
+  border-radius: 50px !important;
+  background-color: aqua !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  display: contents !important;
 }

@@ -20,6 +20,7 @@
       "@discord/init": ["modules/init/src/index.ts"],
       "@discord/libs/auth": ["libs/auth/src/index.ts"],
       "@discord/libs/utils": ["libs/utils/src/index.ts"],
+      "@discord/server": ["modules/server/src/index.ts"],
       "@discord/shared-ui": ["modules/shared/ui/src/index.ts"]
     }
   },

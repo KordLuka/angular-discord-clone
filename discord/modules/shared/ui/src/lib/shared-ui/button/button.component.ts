@@ -10,9 +10,10 @@ import { NgClass, NgIf } from '@angular/common';
   templateUrl: './button.component.html',
 })
 export class ButtonComponent {
-  @Input({ required: true }) text!: string;
+  @Input() text?: string;
   @Input() type: 'button' | 'submit' = 'button';
   @Input() isLoading?: boolean = false;
   @Input() isDisabled?: boolean = false;
   @Input() isOutline?: boolean = false;
+  @Input() customClass?: string;
 }
