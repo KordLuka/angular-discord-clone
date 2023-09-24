@@ -18,5 +18,13 @@
       "ALREADY_HAVE_ACCOUNT": "Masz juz konto?",
       "GOOGLE": "Zaloguj się z Google"
     }
+  },
+  "CREATE_SERVER_MODAL": {
+    "TITLE": "Stwórz swój serwer",
+    "DESCRIPTION": "Dodaj nazwę i obraz dla swojego serwera. Mozesz to później zmienić.",
+    "CREATE": "Stwórz",
+    "SERVER_NAME_LABEL": "Nazwa serwera",
+    "SERVER_NAME_PLACEHOLDER": "Wprowadź nazwę serwera",
+    "SERVER_NAME_REQUIRED_ERROR": "Nazwa serwera jest wymagana!"
   }
 }

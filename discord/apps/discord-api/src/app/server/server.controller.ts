@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ServerService } from './server.service';
 
 @Controller('server')
@@ -14,4 +14,9 @@ export class ServerController {
   public getServers() {
     return this.serverService.getServers();
   }
+
+  // @Post()
+  // public createServer(@Body() createServerDto: any) {
+  //   return this.serverService.createServer(createServerDto);
+  // }
 }

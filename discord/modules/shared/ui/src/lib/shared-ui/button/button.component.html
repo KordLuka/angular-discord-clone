@@ -1,12 +1,16 @@
 <button
   type="{{ type }}"
   [disabled]="isDisabled"
-  class="relative w-full min-w-[200px] text-white bg-primary hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+  [class]="
+    customClass
+      ? customClass
+      : 'relative w-full min-w-[200px] text-white bg-primary hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+  "
   [ngClass]="{
     'bg-blue-300 dark:bg-blue-500 hover:bg-blue-300 dark:hover:bg-blue-500 cursor-not-allowed':
-      isDisabled,
-    'flex justify-center items-center ': isLoading,
-    'bg-transparent dark:bg-transparent border border-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800 text-blue-600 dark:text-white': isOutline,
+      isDisabled && !customClass,
+    'flex justify-center items-center ': isLoading && !customClass,
+    'bg-transparent dark:bg-transparent border border-blue-500 hover:bg-blue-50 dark:hover:bg-gray-800 text-blue-600 dark:text-white': isOutline && !customClass,
   }">
   <ng-container *ngIf="isLoading">
     <svg
@@ -28,9 +32,11 @@
     </svg>
   </ng-container>
   <ng-container *ngIf="!isLoading">
-    <div class="absolute left-4">
+    <div [class]="customClass ? '' : 'absolute left-4'">
       <ng-content></ng-content>
     </div>
   </ng-container>
-  {{ text | translate }}
+  <ng-container *ngIf="text">
+    {{ text | translate }}
+  </ng-container>
 </button>

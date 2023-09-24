@@ -18,5 +18,13 @@
       "ALREADY_HAVE_ACCOUNT": "Alreade have an account?",
       "GOOGLE": "Sign in with Google"
     }
+  },
+  "CREATE_SERVER_MODAL": {
+    "TITLE": "Customize your server",
+    "DESCRIPTION": "Give your server a personality with a name and an image. You can always change it later.",
+    "CREATE": "Create",
+    "SERVER_NAME_LABEL": "Server name",
+    "SERVER_NAME_PLACEHOLDER": "Enter server name",
+    "SERVER_NAME_REQUIRED_ERROR": "Server name is required"
   }
 }
